@@ -1,0 +1,1 @@
+/home/wks/rpmbuild/SPECS/openfetion.spec
