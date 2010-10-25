@@ -1,16 +1,16 @@
 Name:       openfetion
-Version:    1.9
+Version:    2.0
 Release:    1%{?dist}
 Summary:    A Fetion client written using GTK+ 2
 
 Group:      Applications/Internet
 License:    GPLv2+
 URL:        http://basiccoder.com/openfetion
-Source0:    openfetion-1.9.tar.gz
-Patch0:     openfetion-1.9-desktop.patch
+Source0:    openfetion-2.0.tar.gz
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  libxml2-devel, gtk2-devel, gstreamer-devel, libnotify-devel
+BuildRequires:  libXScrnSaver-devel, intltool
 BuildRequires:  gettext
 
 Requires:   %{name}-lib = %{version}-%{release}
@@ -18,13 +18,13 @@ Requires:   %{name}-lib = %{version}-%{release}
 %package lib
 Summary:    Library files of Openfetion
 Group:      Development/Libraries
-BuildRequires:  libxml2-devel, openssl-devel
+BuildRequires:  libxml2-devel, openssl-devel, sqlite-devel
 
 %package lib-devel
 Summary:    Development files for openfetion-lib
 Group:      Development/Libraries
 Requires:   %{name}-lib = %{version}-%{release}
-Requires:   libxml2-devel, openssl-devel
+Requires:   libxml2-devel, openssl-devel, sqlite-devel
 
 
 %description
@@ -41,8 +41,6 @@ Openfetion.
 
 %prep
 %setup -q
-%patch0 -p1
-autoreconf
 
 %build
 %configure --disable-static
@@ -74,10 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING LICENSE README
 %{_bindir}/*
-%{_datadir}/%{name}/resource/newmessage.wav
-%{_datadir}/%{name}/resource/%{name}.desktop
-%{_datadir}/%{name}/skin/*
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/%{name}/resource/newmessage.wav
+%{_datadir}/%{name}/skin/*
 %{_datadir}/pixmaps/fetion.svg
 
 %files lib
@@ -92,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Mon Oct 25 2010 Kunshan Wang <wks1986@gmail.com> - 2.0-1
+- Upgrade to 2.0
+
 * Mon Sep 27 2010 Kunshan Wang <wks1986@gmail.com> - 1.9-1
 - Upgrade to 1.9
 
