@@ -1,6 +1,6 @@
 Name:       openfetion
 Version:    2.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A Fetion client written using GTK+ 2
 
 Group:      Applications/Internet
@@ -10,7 +10,7 @@ Source0:    openfetion-2.0.tar.gz
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  libxml2-devel, gtk2-devel, gstreamer-devel, libnotify-devel
-BuildRequires:  libXScrnSaver-devel, intltool
+BuildRequires:  libXScrnSaver-devel, intltool, NetworkManager-devel
 BuildRequires:  gettext
 
 Requires:   %{name}-lib = %{version}-%{release}
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Mon Oct 25 2010 Kunshan Wang <wks1986@gmail.com> - 2.0-2
+- Added the missing BuildDep NetworkManager-devel
+
 * Mon Oct 25 2010 Kunshan Wang <wks1986@gmail.com> - 2.0-1
 - Upgrade to 2.0
 
